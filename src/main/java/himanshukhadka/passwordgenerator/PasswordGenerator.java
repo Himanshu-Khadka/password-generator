@@ -50,12 +50,9 @@ public class PasswordGenerator extends Application {
         //On Button Pressed
         generateBtn.setOnAction(e->{
             String passStr;
-            if (specialCharacter.isSelected()){
-                passStr = new password().generate(lengthOfPassword,true);
-            }else {
-                passStr = new password().generate(lengthOfPassword,false);
-            }
+            passStr = new password().generate(lengthOfPassword,specialCharacter.isSelected());
             passString.setText(passStr);
+            System.out.println(specialCharacter.isSelected());
             generateBtn.setText("Generate Next");
         });
 
