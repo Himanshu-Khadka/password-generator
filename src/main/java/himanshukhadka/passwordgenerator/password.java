@@ -11,17 +11,32 @@ import java.util.Date;
 
 
 
+/* Password class*/
 public class password{
 
     private String passString;
-    private String timeStamp;
+    private String timeStamp; //For time stamp of generated password
 
+    //Generate method to generate password
     public String generate(int length, boolean hasSpecialCharacters){
-        ArrayList<String> passwords = new ArrayList<>();
+        //Random object to create random integers
         SecureRandom random = new SecureRandom();
+        //Char array to create pass string
         char[] passString = new char[length];
+        //Loop through length
         for (int i = 0; i < length; i++ ){
-            passString[i] = (char) random.nextInt(32,122);
+
+            if (hasSpecialCharacters){
+                passString[i] = (char) random.nextInt(32,122);
+            }else{
+                int temp = 0;
+                do {
+                    temp = random.nextInt(48, 122);
+                } while(!(temp > 90 && temp < 95));
+                passString[i] = (char)temp;
+            }
+
+
         }
         Date date = new Date();
         this.timeStamp = date.toString();
